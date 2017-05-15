@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -24,6 +24,8 @@
 #include <string>
 #include <vector>
 
+#include "boost/function.hpp"
+
 struct DNSBreaker {
 	DNSBreaker(): isbreak(false), dnsstatus(NULL) {}
 	bool isbreak;
@@ -43,8 +45,13 @@ class DNS {
     void Cancel(const std::string& _host_name = std::string());
     void Cancel(DNSBreaker& _breaker);
     
+    void SetMonitorFunc(const boost::function<void (int _key)>& _monitor_func) {
+    	monitor_func_ = _monitor_func;
+    }
   private:
     DNSFunc dnsfunc_;
+    boost::function<void (int _key)> monitor_func_;
+    static const int kDNSThreadIDError = 0;
 };
 
 

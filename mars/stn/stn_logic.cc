@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -180,7 +180,8 @@ void ClearTasks() {
 }
 
 void Reset() {
-	SINGLETON_RELEASE(NetCore);
+	xinfo2(TSF "stn reset");
+	NetCore::Singleton::Release();
 	NetCore::Singleton::Instance();
 }
 
@@ -230,13 +231,13 @@ void SetSignallingStrategy(long _period, long _keepTime) {
 
 void KeepSignalling() {
 #ifdef USE_LONG_LINK
-    STN_WEAK_CALL(GetSignallingKeeper().Keep());
+    STN_WEAK_CALL(KeepSignal());
 #endif
 }
 
 void StopSignalling() {
 #ifdef USE_LONG_LINK
-    STN_WEAK_CALL(GetSignallingKeeper().Stop());
+    STN_WEAK_CALL(StopSignal());
 #endif
 }
 
@@ -285,11 +286,7 @@ void network_export_symbols_0(){}
 		xassert2(sg_callback != NULL);
 		return sg_callback->OnTaskEnd(taskid, user_context, error_type, error_code);
 	}
-	//上报流量数据
-	void ReportFlow(int32_t wifi_recv, int32_t wifi_send, int32_t mobile_recv, int32_t mobile_send) {
-		xassert2(sg_callback != NULL);
-		sg_callback->ReportFlow(wifi_recv, wifi_send, mobile_recv, mobile_send);
-	}
+
 	//上报网络连接状态
 	void ReportConnectStatus(int status, int longlink_status) {
 		xassert2(sg_callback != NULL);

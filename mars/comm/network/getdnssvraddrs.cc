@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -58,9 +58,6 @@ void getdnssvraddrs(std::vector<socket_address>& _dnssvraddrs) {
     res_ndestroy(&stat);
 }
 
-#elif defined WP8
-void getdnssvraddrs(std::vector<socket_address>& _dnssvraddrs) {
-}
 #elif defined _WIN32
 #include <stdio.h>
 #include <windows.h>
@@ -86,5 +83,6 @@ void getdnssvraddrs(std::vector<socket_address>& _dnssvraddrs) {
     return;
 }
 #else
-#error "no imp"
+void getdnssvraddrs(std::vector<socket_address>& _dnssvraddrs) {
+}
 #endif

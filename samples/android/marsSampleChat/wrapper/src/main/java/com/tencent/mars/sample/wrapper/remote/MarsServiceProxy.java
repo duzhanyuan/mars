@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making GAutomator available.
+* Tencent is pleased to support the open source community by making Mars available.
 * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 *
 * Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -161,7 +161,7 @@ public class MarsServiceProxy implements ServiceConnection {
         if (queue.remove(marsTaskWrapper)) {
             // Remove from queue, not exec yet, call MarsTaskWrapper::onTaskEnd
             try {
-                marsTaskWrapper.onTaskEnd();
+                marsTaskWrapper.onTaskEnd(-1, -1);
 
             } catch (RemoteException e) {
                 // Called in client, ignore RemoteException

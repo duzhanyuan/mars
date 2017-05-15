@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -83,9 +83,6 @@ int  StnCallBack::OnTaskEnd(int32_t _taskid, void* const _user_context, int _err
 
 }
 
-void StnCallBack::ReportFlow(int32_t _wifi_recv, int32_t _wifi_send, int32_t _mobile_recv, int32_t _mobile_send) {
-    
-}
 
 void StnCallBack::ReportConnectStatus(int _status, int longlink_status) {
     

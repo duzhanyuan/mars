@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -373,8 +373,10 @@ class Thread {
         if (0 < strnlen((const char*)runableref->thread_name, sizeof(runableref->thread_name))) {
 #ifdef __APPLE__
             pthread_setname_np((const char*)runableref->thread_name);
-#else
+#elif defined(ANDROID)
             pthread_setname_np(runableref->tid, (const char*)runableref->thread_name);
+#else
+            
 #endif
         }
         

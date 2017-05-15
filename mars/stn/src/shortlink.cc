@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -225,7 +225,7 @@ SOCKET ShortLink::__RunConnect(ConnectProfile& _conn_profile) {
             __RunResponseError(kEctSocket, kEctSocketMakeSocketPrepared, _conn_profile, false);
         }
         else {
-        	_conn_profile.disconn_errtype = kEctCanceld;
+        	_conn_profile.disconn_errtype = kEctCanceled;
         	__UpdateProfile(_conn_profile);
         }
 
@@ -320,7 +320,7 @@ void ShortLink::__RunReadWrite(SOCKET _socket, int& _err_type, int& _err_code, C
 
 		if (breaker_.IsBreak()) {
 			xinfo2(TSF"user cancel, nread:%_, nwrite:%_", socket_nread(_socket), socket_nwrite(_socket)) >> group_close;
-        	_conn_profile.disconn_errtype = kEctCanceld;
+        	_conn_profile.disconn_errtype = kEctCanceled;
 			break;
 		}
 

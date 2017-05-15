@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making GAutomator available.
+* Tencent is pleased to support the open source community by making Mars available.
 * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 *
 * Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -72,13 +72,12 @@ public class TextMessageTask extends NanoMarsTaskWrapper<Chat.SendMessageRequest
     }
 
     @Override
-    public void onTaskEnd() {
+    public void onTaskEnd(int errType, int errCode) {
         if (callback == null) {
             callback = onError;
         }
 
         uiHandler.post(callback);
-        super.onTaskEnd();
     }
 
     public TextMessageTask onOK(Runnable onOK) {

@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -180,6 +180,12 @@ bool NetSourceTimerCheck::__TryConnnect(const std::string& _host) {
 
     if (ip_vec.empty()) dns_util_.GetDNS().GetHostByName(_host, ip_vec);
     if (ip_vec.empty()) return false;
+
+    for (std::vector<std::string>::iterator iter = ip_vec.begin(); iter != ip_vec.end(); ++iter) {
+    	if (*iter == longlink_.Profile().ip) {
+    		return false;
+    	}
+    }
 
     std::vector<uint16_t> port_vec;
     NetSource::GetLonglinkPorts(port_vec);

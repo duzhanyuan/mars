@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -179,6 +179,11 @@ void TcpClient::__Run() {
     xerror2_if(0 != socket_set_nobio(socket_), TSF"socket_set_nobio:%_, %_", socket_errno, socket_strerror(socket_errno));
 
     int ret = ::connect(socket_, (sockaddr*)&_addr, sizeof(_addr));
+
+    std::string local_ip = socket_address::getsockname(socket_).ip();
+    unsigned int local_port = socket_address::getsockname(socket_).port();
+
+    xinfo2(TSF"sock:%_, local_ip:%_, local_port:%_, svr_ip:%_, svr_port:%_", socket_, local_ip, local_port, ip_, port_);
 
     if (0 > ret && !IS_NOBLOCK_CONNECT_ERRNO(socket_errno)) {
         xerror2("connect errno=%d", socket_errno);

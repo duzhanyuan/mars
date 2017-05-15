@@ -1,5 +1,5 @@
 /*
-* Tencent is pleased to support the open source community by making GAutomator available.
+* Tencent is pleased to support the open source community by making Mars available.
 * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 *
 * Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -187,8 +187,8 @@ public class MarsServiceStub extends MarsService.Stub implements StnLogic.ICallB
     }
 
     @Override
-    public void reportFlow(int wifiRecv, int wifiSend, int mobileRecv, int mobileSend) {
-        onPush(BaseConstants.FLOW_CMDID, String.format("%d,%d,%d,%d", wifiRecv, wifiSend, mobileRecv, mobileSend).getBytes(Charset.forName("UTF-8")));
+    public void trafficData(int send, int recv) {
+        onPush(BaseConstants.FLOW_CMDID, String.format("%d,%d", send, recv).getBytes(Charset.forName("UTF-8")));
     }
 
     @Override
@@ -233,7 +233,7 @@ public class MarsServiceStub extends MarsService.Stub implements StnLogic.ICallB
         }
 
         try {
-            wrapper.onTaskEnd();
+            wrapper.onTaskEnd(errType, errCode);
 
         } catch (RemoteException e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-// Tencent is pleased to support the open source community by making GAutomator available.
+// Tencent is pleased to support the open source community by making Mars available.
 // Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
 
 // Licensed under the MIT License (the "License"); you may not use this file except in 
@@ -32,7 +32,6 @@
 //
 #define DNS_TIMEOUT  (1)// s
 
-//if do not use newdns IP, comment the macro
 #define USE_LONG_LINK
 //task attribute max value
 #define DEF_TASK_TIME_OUT (60*1000)
